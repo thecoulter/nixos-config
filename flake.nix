@@ -6,7 +6,7 @@
   outputs = { self, nixpkgs }: {
     nixosConfigurations = {
 
-      work-desktop = nixpkgs.lib.nixosSystem {
+      andrewc-desktop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./hosts/work-desktop/configuration.nix
@@ -17,7 +17,7 @@
         ];
       };
 
-      work-laptop = nixpkgs.lib.nixosSystem {
+      andrewc-laptop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./hosts/work-laptop/configuration.nix

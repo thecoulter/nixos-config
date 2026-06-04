@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+
+  # Flakes
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -11,11 +15,17 @@
     plugins = with pkgs; [
       networkmanager-fortisslvpn
       networkmanager-iodine
+      networkmanager-l2tp
       networkmanager-openconnect
+      networkmanager-openvpn
       networkmanager-vpnc
+      networkmanager-sstp
     ];
   };
 
+  programs.bash.shellAliases = {
+    rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#$(hostname)";
+  };
   # Time and locale
   time.timeZone = "America/Denver";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -96,6 +106,9 @@
     wtype
     cifs-utils
     zoom-us
+    openssl
+    tmux
+    dig
   ];
 
   # Syncthing
