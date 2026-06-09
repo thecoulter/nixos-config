@@ -42,16 +42,34 @@
   };
 
   # Plasma 6 / Wayland
+  # services.displayManager.sddm = {
+  #   enable = true;
+  #   wayland.enable = true;
+  # };
+  # services.desktopManager.plasma6.enable = true;
+  # services.xserver.xkb = {
+  #   layout = "us";
+  #   variant = "";
+  # };
+  
+  # Plasma 6 / X11
   services.displayManager.sddm = {
     enable = true;
-    wayland.enable = true;
+    wayland.enable = false;
+    settings = {
+      General.DefaultSession = "plasmax11.desktop";
+      Wayland.SessionDir = "";
+    };
   };
+  services.displayManager.defaultSession = "plasmax11";
   services.desktopManager.plasma6.enable = true;
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
+  services.xserver = {
+    enable = true;
+    xkb = {
+      layout = "us";
+      variant = "";
+    };
   };
-
   # Sound
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -94,6 +112,8 @@
 
   environment.systemPackages = with pkgs; [
     vim
+    flameshot
+    copyq
     wget
     brave
     emacs-nox
