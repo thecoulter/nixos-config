@@ -23,9 +23,6 @@
     ];
   };
 
-  programs.bash.shellAliases = {
-    rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#$(hostname)";
-  };
   # Time and locale
   time.timeZone = "America/Denver";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -80,6 +77,7 @@
     pulse.enable = true;
   };
 
+  
   # Printing
   services.printing.enable = true;
 
@@ -112,6 +110,7 @@
 
   environment.systemPackages = with pkgs; [
     vim
+    wireshark
     flameshot
     copyq
     wget
