@@ -1,17 +1,16 @@
 {
   description = "Andrew's NixOS configuration";
-
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";   # your existing line, untouched
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";   
     home-manager = {
-      url = "github:nix-community/home-manager";           # defaults to master = tracks unstable
+      url = "github:nix-community/home-manager";           
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs }: {
+  
+  outputs = { self, nixpkgs, home-manager, ... }: {
     nixosConfigurations = {
-
       andrewc-desktop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
@@ -20,7 +19,9 @@
           ./hosts/work-desktop/hardware.nix
           ./hardware-common.nix
           ./common.nix
-          ./modules/openssh.nix	  	  	  
+          ./modules/openssh.nix
+          home-manager.nixosModules.home-manager
+          ./hosts/work-desktop/home.nix
         ];
       };
 

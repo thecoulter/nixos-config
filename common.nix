@@ -115,7 +115,7 @@
     copyq
     wget
     brave
-    emacs-nox
+    emacs
     gpclient
     openconnect
     git
