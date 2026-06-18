@@ -1,12 +1,19 @@
-# home/emacs/default.nix
-{ pkgs, ... }:
+# home/emacs/default.nix — note the added `config` arg
+{ config, pkgs, ... }:
 {
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs;   # pin e.g. pkgs.emacs30 if you want
-    extraPackages = epkgs: with epkgs; [ magit use-package ];
+    package = pkgs.emacs;
+    extraPackages = epkgs: with epkgs; [ magit use-package vertico ];
   };
 
-  # symlink the committed init.el into place
-  xdg.configFile."emacs/init.el".source = ./init.el;
+  services.emacs = {
+    enable = true;
+    client.enable = true;
+    defaultEditor = true;
+  };
+
+  xdg.configFile."emacs/init.el".source =
+    config.lib.file.mkOutOfStoreSymlink
+      "${config.home.homeDirectory}/nixos-config/home/emacs/init.el";
 }
