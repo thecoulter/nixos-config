@@ -15,7 +15,12 @@
 (global-display-line-numbers-mode 1)
 (setq whitespace-style '(face tabs spaces tab-mark space-mark trailing))
 (global-whitespace-mode 1)
+;; Don't show the splash/welcome screen at startup
+(setq inhibit-startup-screen t)
+;; Blank the *scratch* buffer message too (the "This buffer is for text..." comment)
+(setq initial-scratch-message nil)
 
-
-
+(use-package which-key
+  :config
+  (which-key-mode))
 

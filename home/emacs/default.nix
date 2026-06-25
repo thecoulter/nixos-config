@@ -4,7 +4,13 @@
   programs.emacs = {
     enable = true;
     package = pkgs.emacs;
-    extraPackages = epkgs: with epkgs; [ magit use-package vertico ];
+    extraPackages = epkgs: with epkgs; [
+      magit
+      use-package
+      vertico
+      epkgs.treesit-grammars.with-all-grammars
+      which-key
+    ];
   };
 
   services.emacs = {
