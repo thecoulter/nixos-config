@@ -108,7 +108,7 @@
   nixpkgs.config.allowUnfree = true;
   programs.firefox.enable = true;
   services.emacs.enable = true;
-  
+
   environment.systemPackages = with pkgs; [
     vim
     wireshark
