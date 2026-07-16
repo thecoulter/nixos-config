@@ -4,13 +4,13 @@
 
   # Openssh
   services.openssh = {
-    enable = true;
+    enable = false;
     settings = {
       PermitRootLogin = "no";          # or "prohibit-password"
       PasswordAuthentication = false;  # key-only auth
       KbdInteractiveAuthentication = false;
     };
-    ports = [ 22 ];                
+    ports = [ 22 ];
   };
 
 }
