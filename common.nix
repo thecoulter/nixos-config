@@ -23,6 +23,16 @@
     ];
   };
 
+  # Clean up old versions
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
+  # and keep the boot menu from bloating (systemd-boot)
+  boot.loader.systemd-boot.configurationLimit = 20;
+
+
   # Time and locale
   time.timeZone = "America/Denver";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -48,7 +58,7 @@
   #   layout = "us";
   #   variant = "";
   # };
-  
+
   # Plasma 6 / X11
   services.displayManager.sddm = {
     enable = true;
@@ -77,7 +87,6 @@
     pulse.enable = true;
   };
 
-  
   # Printing
   services.printing.enable = true;
 
